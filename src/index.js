@@ -8,8 +8,8 @@ module.exports = function svgIconLoader(content) {
   const svgoEnabled = true || query.svgo;
   const svgoConfig = {} || query.svgoConfig;
 
-  svgo(content, svgoConfig, ({ data: svg, info }) => {
-    if (svgoEnabled) return toTemplateFunction(svg, info);
-    return toTemplateFunction(content, info);
+  svgo(content, svgoConfig, ({ data: svg }) => {
+    if (svgoEnabled) return toTemplateFunction(svg);
+    return toTemplateFunction(content);
   });
 };

@@ -1,53 +1,22 @@
-# Sass variable loader for webpack
+# SVG Icon Template Loader
 
-> Parses your Sass variables and returns an object containing each variable camelCased and the end value as it would be in CSS.
-
-> That means full support for Sass' lighten, darken, mix etc.
-
-**Input:**
-``` scss
-$gray-base: #000 !default;
-$gray-darker: lighten($gray-base, 13.5%) !default; // #222
-$gray-dark: lighten($gray-base, 20%) !default;  // #333
-$gray:  lighten($gray-base, 33.5%) !default; // #555
-$gray-light:  lighten($gray-base, 46.7%) !default; // #777
-$gray-lighter:  lighten($gray-base, 93.5%) !default; // #eee
-```
-
-**Result:**
-``` javascript
-{
-  grayBase: '#000',
-  grayDarker: '#222222',
-  grayDark: '#333333',
-  gray: '#555555',
-  grayLight: '#777777',
-  grayLighter: '#eeeeee'
-}
-```
+> Turns your SVG icons into functions that allow you to specify overrides for common SVG attributes such as fill, stroke, stroke width etc.
 
 ## Installation
 
-`npm install --save-dev sass-variable-loader`
+`npm install --save-dev svg-icon-template-loader`
 
 ## Usage
 
 ``` javascript
-import variables from 'sass-variable-loader!./_variables.scss';
-// => returns all the variables in _variables.scss as an object with each variable name camelCased
+import iconClose from 'svg-icon-template-loader!./close.svg';
+// => returns the SVG as a function that takes an options object to specify overrides such as fill, stroke, stroke width etc.
 ```
-**Note:** If you've already defined loaders for Sass files in the configuration, you can override the [loader order](https://webpack.github.io/docs/loaders.html#loader-order) by writing `!!sass-variable-loader!./_variables.scss` to disable all loaders specified in the configuration for that module request.
+**Note:** If you've already defined loaders for SVG files in the configuration, you can override the [loader order](https://webpack.github.io/docs/loaders.html#loader-order) by writing `!!svg-icon-template-loader!./close.svg` to disable all loaders specified in the configuration for that module request.
 
 ## Options
 
 You can pass options to the loader via [query parameters](http://webpack.github.io/docs/using-loaders.html#query-parameters).
-
-### preserveVariableNames
-
-``` javascript
-import variables from 'sass-variable-loader?preserveVariableNames!./_variables.scss';
-// => returns all the variables in _variables.scss as an object with each variable name left intact
-```
 
 ## License
 
