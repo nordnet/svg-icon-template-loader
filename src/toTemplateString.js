@@ -1,3 +1,7 @@
+function rootElemHandler(match, originalValue, contents) {
+  return `<' + (options.rootElement || '${ originalValue }') + ' ' + '${ contents }' + '</' + (options.rootElement || '${ originalValue }')  + '>`;
+}
+
 function viewBoxHandler(match, originalValue) {
   const viewBox = originalValue.split(' ').map((value, index) => {
     if (index < 2) return `(${ value } - (strokeWidthDifference / -2))`;
@@ -20,6 +24,7 @@ function strokeWidthHandler(match, originalValue) {
 }
 
 const regexes = [
+  [/^<(.+?)\s(.+)<\/(.+)>$/g, rootElemHandler],
   [/viewBox=\"(.+?)\"/g, viewBoxHandler],
   [/fill=\"((?!none).+?)\"/g, fillHandler],
   [/stroke=\"((?!none).*?)\"/g, strokeHandler],
