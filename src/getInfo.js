@@ -37,7 +37,7 @@ const regexes = [
   [/stroke-width=\"((?!0).*?)\"/g, getModeStrokeWidth],
 ];
 
-export default function(svg) {
+export default function (svg) {
   return Object.assign.apply(this, regexes.map(([regex, handler]) => {
     let matches = [];
     let match = regex.exec(svg);
