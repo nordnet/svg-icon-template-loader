@@ -1,13 +1,14 @@
 import getInfo from './getInfo.js';
 import toTemplateString from './toTemplateString';
 
-export default function(data) {
+export default function (data) {
   const info = getInfo(data);
 
   const exportString = `module.exports = function(options) {
     var options = options || {};
     var info = ${ JSON.stringify(info) };
-    var strokeWidthDifference = options.strokeWidth > 0 ? info.modeStrokeWidth - options.strokeWidth : 0;
+    var strokeWidthDifference = options.strokeWidth > 0 ?
+      info.modeStrokeWidth - options.strokeWidth : 0;
     var result = { data: '${ toTemplateString(data) }' };
 
     if (strokeWidthDifference !== 0) {
