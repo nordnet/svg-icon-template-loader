@@ -20,4 +20,4 @@ You can pass options to the loader via [query parameters](http://webpack.github.
 
 ## License
 
-MIT (http://www.opensource.org/licenses/mit-license.php)
+This open source project released by Nordnet is licensed under the [MIT license](http://www.opensource.org/licenses/mit-license.php).
