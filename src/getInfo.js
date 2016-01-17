@@ -1,52 +1,51 @@
+const viewBoxValuesNames = {
+  0: 'minX',
+  1: 'minY',
+  2: 'width',
+  3: 'height',
+};
+
 function viewBoxParser(string) {
   const values = string[0].split(' ');
-  const valueNames = {
-    0: 'minX',
-    1: 'minY',
-    2: 'width',
-    3: 'height',
-  };
+  return values.reduce(
+    (result, value, index) => Object.assign(result, getViewBoxValue(value, index)), {});
+}
 
-  return Object.assign.apply(this, values.map((value, index) => {
-    return { [valueNames[index]]: parseInt(value, 10) };
-  }));
+function getViewBoxValue(value, index) {
+  return { [viewBoxValuesNames[index]]: parseInt(value, 10) };
 }
 
 function getModeStrokeWidth(strings) {
-  const store = strings.map(number => parseInt(number, 10));
-  const frequency = {};  // array of frequency.
-  let max = 0;  // holds the max frequency.
-  let result;   // holds the max frequency element.
+  const frequency = strings.reduce(
+    (result, value) => Object.assign(result, { [value]: (result[value] || 0) + 1 }), {});
 
-  store.forEach((value) => {
-    const key = value.toString();
-    frequency[key] = (frequency[key] || 0) + 1;
-    if (frequency[key] > max) {
-      max = frequency[key];
-      result = value;
-    }
-  });
+  const maxFrequencyKey = Object.keys(frequency).reduce(
+    (previous, current) => frequency[current] > frequency[previous] ? current : previous);
 
   return {
-    modeStrokeWidth: result,
+    modeStrokeWidth: frequency[maxFrequencyKey],
   };
 }
 
 const regexes = [
-  [/viewBox=\"(.+?)\"/g, viewBoxParser],
-  [/stroke-width=\"((?!0).*?)\"/g, getModeStrokeWidth],
+  { regex: /viewBox=\"(.+?)\"/g, handler: viewBoxParser },
+  { regex: /stroke-width=\"((?!0).*?)\"/g, handler: getModeStrokeWidth },
 ];
 
-export default function (svg) {
-  return Object.assign.apply(this, regexes.map(([regex, handler]) => {
-    let matches = [];
-    let match = regex.exec(svg);
-
-    while (match) {
-      matches = matches.concat(match.slice(1));
-      match = regex.exec(svg);
-    }
-
+function mapSvg(svg) {
+  return ({ regex, handler }) => {
+    const matches = matcher(svg)(regex);
     return handler(matches);
-  }));
+  };
+}
+
+function matcher(svg) {
+  return function matchRegex(regex) {
+    const match = regex.exec(svg);
+    return match ? match.slice(1).concat(matchRegex(regex)) : [];
+  };
+}
+
+export default function getInfo(svg) {
+  return Object.assign.apply(this, regexes.map(mapSvg(svg)));
 }
