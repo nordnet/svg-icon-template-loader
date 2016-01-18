@@ -1,6 +1,6 @@
 {
   "name": "svg-icon-template-loader",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Svg icon template loader module for webpack",
   "main": "dist/index.js",
   "scripts": {
