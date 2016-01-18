@@ -1,6 +1,5 @@
 function rootElemHandler(match, originalValue, contents) {
-  return `<' + (options.rootElement || '${ originalValue }') + ' ' + '${ contents }' +
-    '</' + (options.rootElement || '${ originalValue }')  + '>`;
+  return `<' + (options.rootElement || '${ originalValue }') + ' ' + '${ contents }' + '</' + (options.rootElement || '${ originalValue }')  + '>`;
 }
 
 function viewBoxHandler(match, originalValue) {
