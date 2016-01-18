@@ -1,6 +1,6 @@
 import Svgo from 'svgo';
 
-export default function (data, config = {}, callback) {
+function svgo(data, config = {}, callback) {
   const defaultConfig = {
     plugins: [
       { removeTitle: true },
@@ -9,6 +9,10 @@ export default function (data, config = {}, callback) {
     ],
   };
 
-  const svgo = new Svgo(Object.assign({}, defaultConfig, config));
-  svgo.optimize(data, result => callback(result));
+  const svgoObj = new Svgo(Object.assign({}, defaultConfig, config));
+  svgoObj.optimize(data, result => callback(result));
 }
+
+module.exports = {
+  svgo,
+};
