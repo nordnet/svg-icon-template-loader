@@ -23,7 +23,7 @@ function getModeStrokeWidth(strings) {
     (previous, current) => frequency[current] > frequency[previous] ? current : previous);
 
   return {
-    modeStrokeWidth: frequency[maxFrequencyKey],
+    modeStrokeWidth: parseInt(maxFrequencyKey, 10),
   };
 }
 
