@@ -6,9 +6,7 @@ import svgData from './svg';
 describe('toTemplateFunction()', function() {
   it('should return a function as a string', function() {
     svgo(svgData, {}, ({ data: svg }) => {
-      const templateFunction = toTemplateFunction(svg);
-      console.log(templateFunction);
-      expect(templateFunction).to.be.a('string');
+      expect(toTemplateFunction(svg)).to.be.a('string');
     });
   });
 });
