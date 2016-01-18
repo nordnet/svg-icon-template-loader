@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import svgo from '../src/svgo';
+import { svgo } from '../src/svgo';
 import svgData from './svg';
 
 describe('svgo()', function() {

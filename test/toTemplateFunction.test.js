@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import svgo from '../src/svgo';
+import { svgo } from '../src/svgo';
 import toTemplateFunction from '../src/toTemplateFunction';
 import svgData from './svg';
 
