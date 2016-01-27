@@ -10,7 +10,6 @@ import svg from './svg';
 
 describe('svgIconLoader', () => {
   let sandbox;
-  let callbackResults;
   let asyncSpy;
 
   const query = 'query';
@@ -33,7 +32,7 @@ describe('svgIconLoader', () => {
     }
 
     svgIconLoader.call(context, content);
-    callbackResults = svgo.svgo.getCall(0).args[2]({ data: svg });
+    svgo.svgo.getCall(0).args[2]({ data: svg });
   }
 
   describe('query with svgo', () => {
@@ -47,7 +46,8 @@ describe('svgIconLoader', () => {
     it('should return callback with expected args', () => expect(toTemplate.toTemplateFunction).to.have.been.calledWith(svg));
 
     it('should run async callback once', () => expect(asyncSpy).to.have.been.calledOnce);
-    it('should run async callback with expected args', () => expect(asyncSpy).to.have.been.calledWith(null, toTemplate.toTemplateFunction(svg)));
+    it('should run async callback with expected args',
+      () => expect(asyncSpy).to.have.been.calledWith(null, toTemplate.toTemplateFunction(svg)));
 
     it('should call cacheable', () => expect(context.cacheable).to.have.been.calledOnce);
     it('should call parseQuery once', () => expect(loaderUtils.parseQuery).to.have.been.calledOnce);
@@ -68,7 +68,8 @@ describe('svgIconLoader', () => {
     it('should return callback with expected args', () => expect(toTemplate.toTemplateFunction).to.have.been.calledWith(content));
 
     it('should run async callback once', () => expect(asyncSpy).to.have.been.calledOnce);
-    it('should run async callback with expected args', () => expect(asyncSpy).to.have.been.calledWith(null, toTemplate.toTemplateFunction(content)));
+    it('should run async callback with expected args',
+      () => expect(asyncSpy).to.have.been.calledWith(null, toTemplate.toTemplateFunction(content)));
 
     it('should call cacheable', () => expect(context.cacheable).to.have.been.calledOnce);
     it('should call parseQuery once', () => expect(loaderUtils.parseQuery).to.have.been.calledOnce);

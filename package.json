@@ -7,7 +7,7 @@
     "clean": "rimraf dist",
     "build": "babel ./src -d ./dist",
     "test": "mocha",
-    "lint": "eslint --ext=.js ./src",
+    "lint": "eslint --ext=.js ./src ./test",
     "prepush": "npm run lint && npm run test",
     "prepublish": "npm run build",
     "postpublish": "rimraf dist && git push --follow-tags"

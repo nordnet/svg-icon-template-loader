@@ -1,7 +1,7 @@
 import getInfo from './getInfo.js';
 import toTemplateString from './toTemplateString';
 
-export default function(data) {
+export default function (data) {
   const info = getInfo(data);
 
   const exportString = `module.exports = function(options) {

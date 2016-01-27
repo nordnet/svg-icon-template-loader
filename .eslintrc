@@ -2,9 +2,11 @@
   "extends": "airbnb/base",
   "env": {
     "node": true,
-    "es6": true
+    "es6": true,
+    "mocha": true
   },
   "rules": {
-    "no-use-before-define": [2, "nofunc"]
+    "no-use-before-define": [2, "nofunc"],
+    "max-len": [2, 140]
   }
 }
