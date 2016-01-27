@@ -2,6 +2,10 @@
 
 > Turns your SVG icons into functions that allow you to specify overrides for common SVG attributes such as root element, fill, stroke and stroke width.
 
+[![NPM version][npm-image]][npm-url]
+[![Build Status][travis-image]][travis-url]
+[![Dependency Status][depstat-image]][depstat-url]
+
 ## Installation
 
 `npm install --save-dev svg-icon-template-loader`
@@ -53,3 +57,12 @@ import iconClose from `svg-icon-template-loader?svgoConfig=${ svgoConfig }!./clo
 ## License
 
 This open source project released by Nordnet is licensed under the [MIT license](http://www.opensource.org/licenses/mit-license.php).
+
+[npm-url]: https://npmjs.org/package/svg-icon-template-loader
+[npm-image]: https://img.shields.io/npm/v/svg-icon-template-loader.svg
+
+[travis-url]: https://travis-ci.org/nordnet/svg-icon-template-loader
+[travis-image]: https://travis-ci.org/nordnet/svg-icon-template-loader.svg?branch=master
+
+[depstat-url]: https://david-dm.org/nordnet/svg-icon-template-loader
+[depstat-image]: https://david-dm.org/nordnet/svg-icon-template-loader.svg
