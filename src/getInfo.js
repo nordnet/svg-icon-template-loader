@@ -16,14 +16,20 @@ function getViewBoxValue(value, index) {
 }
 
 function getModeStrokeWidth(strings) {
-  const frequency = strings.reduce(
-    (result, value) => Object.assign(result, { [value]: (result[value] || 0) + 1 }), {});
+  if (strings.length > 0) {
+    const frequency = strings.reduce(
+      (result, value) => Object.assign(result, { [value]: (result[value] || 0) + 1 }), {});
 
-  const maxFrequencyKey = Object.keys(frequency).reduce(
-    (previous, current) => frequency[current] > frequency[previous] ? current : previous);
+    const maxFrequencyKey = Object.keys(frequency).reduce(
+      (previous, current) => frequency[current] > frequency[previous] ? current : previous);
+
+    return {
+      modeStrokeWidth: parseInt(maxFrequencyKey, 10),
+    };
+  }
 
   return {
-    modeStrokeWidth: parseInt(maxFrequencyKey, 10),
+    modeStrokeWidth: 1,
   };
 }
 
