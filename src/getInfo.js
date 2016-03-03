@@ -1,17 +1,18 @@
-const viewBoxValuesNames = {
-  0: 'minX',
-  1: 'minY',
-  2: 'width',
-  3: 'height',
-};
-
 function viewBoxParser(string) {
+  const viewBoxValuesNames = {
+    0: 'minX',
+    1: 'minY',
+    2: 'width',
+    3: 'height',
+  };
+
   const values = string[0].split(' ');
-  return values.reduce(
-    (result, value, index) => Object.assign(result, getViewBoxValue(value, index)), {});
+  return values.reduce((result, value, index) => {
+    return Object.assign(result, getViewBoxValue(value, index, viewBoxValuesNames));
+  }, {});
 }
 
-function getViewBoxValue(value, index) {
+function getViewBoxValue(value, index, viewBoxValuesNames) {
   return { [viewBoxValuesNames[index]]: parseInt(value, 10) };
 }
 
